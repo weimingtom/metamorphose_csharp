@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DD307287-1C00-4607-A680-2EBE150F2440}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>metamorphose</RootNamespace>
+    <AssemblyName>metamorphose</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="metamorphose\java\DataOutputStream.cs" />
+    <Compile Include="metamorphose\java\Enumeration.cs" />
+    <Compile Include="metamorphose\java\EOFException.cs" />
+    <Compile Include="metamorphose\java\Hashtable.cs" />
+    <Compile Include="metamorphose\java\HashtableEnum.cs" />
+    <Compile Include="metamorphose\java\InputStream.cs" />
+    <Compile Include="metamorphose\java\IOException.cs" />
+    <Compile Include="metamorphose\java\NumberFormatException.cs" />
+    <Compile Include="metamorphose\java\OutputStream.cs" />
+    <Compile Include="metamorphose\java\PrintStream.cs" />
+    <Compile Include="metamorphose\java\Reader.cs" />
+    <Compile Include="metamorphose\java\Runtime.cs" />
+    <Compile Include="metamorphose\java\Stack.cs" />
+    <Compile Include="metamorphose\java\SystemUtil.cs" />
+    <Compile Include="metamorphose\launcher\Launcher.cs" />
+    <Compile Include="metamorphose\lua\BaseLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\BaseLibReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\BlockCnt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\CallInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\Debug.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\DumpedInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\Enum.cs" />
+    <Compile Include="metamorphose\lua\Expdesc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\FromReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\FuncState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\Hook.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\IOLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\Loader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\LocVar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\Lua.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\LuaError.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\LuaFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\LuaInternal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\LuaJavaCallback.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\LuaTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\LuaUserdata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\MathLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\OSLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\PackageLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\Proto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\StringLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\StringReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\Syntax.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\TableLib.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="metamorphose\lua\UpVal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
