@@ -552,7 +552,7 @@ namespace metamorphose.lua
 
       public Enumeration keys()
 	  {
-		return new Enum(this, base.Keys.GetEnumerator());
+		return new Enum(this, base.keys());
 	  }
 
 	  /// <summary>

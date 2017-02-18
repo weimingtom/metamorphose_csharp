@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Text;
+using metamorphose.java;
 
 /*  $Header: //info.ravenbrook.com/project/jili/version/1.1/code/mnj/lua/StringLib.java#1 $
  * Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies).
@@ -218,7 +219,7 @@ namespace metamorphose.lua
 		{
 		  ByteArrayOutputStream s = new ByteArrayOutputStream();
 		  Lua.dump(L.value(1), s);
-		  sbyte[] a = s.toByteArray();
+		  byte[] a = s.toByteArray();
 		  s = null;
 		  StringBuilder b = new StringBuilder();
 		  for (int i = 0; i < a.Length; ++i)

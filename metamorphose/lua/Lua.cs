@@ -1902,7 +1902,7 @@ protectBreak:
 		{
 		  throw new System.NullReferenceException();
 		}
-		InputStream @in = this.GetType().getResourceAsStream(filename);
+        InputStream @in = SystemUtil.getResourceAsStream(filename);
 		if (@in == null)
 		{
 		  return errfile("open", filename, new IOException());
@@ -2103,7 +2103,7 @@ protectBreak:
 	  {
 		int ici; // Index of CallInfo
 
-		for (ici = civ.Count - 1; level > 0 && ici > 0; --ici)
+		for (ici = civ.getSize() - 1; level > 0 && ici > 0; --ici)
 		{
 		  CallInfo ci = (CallInfo)civ.elementAt(ici);
 		  --level;
@@ -2190,7 +2190,7 @@ protectBreak:
 		{
 		  return -1;
 		}
-		if (ci == ci())
+		if (ci == __ci())
 		{
 		  ci.Savedpc = savedpc;
 		}
@@ -2244,8 +2244,8 @@ protectBreak:
 		if (hook != null && allowhook)
 		{
 		  int top = stackSize;
-		  int ci_top = ci().top();
-		  int ici = civ.Count - 1;
+		  int ci_top = __ci().top();
+		  int ici = civ.getSize() - 1;
 		  if (@event == HOOKTAILRET) // not supported yet
 		  {
 			ici = 0;
@@ -2253,12 +2253,12 @@ protectBreak:
 		  Debug ar = new Debug(ici);
 		  ar.Event = @event;
 		  ar.Currentline = line;
-		  ci().Top = stackSize;
+		  __ci().Top = stackSize;
 		  allowhook = false; // cannot call hooks inside a hook
 		  hook.luaHook(this, ar);
 		  //# assert !allowhook
 		  allowhook = true;
-		  ci().Top = ci_top;
+		  __ci().Top = ci_top;
 		  stacksetsize(top);
 		}
 	  }
@@ -2344,12 +2344,12 @@ protectBreak:
 		int i = openupval.Count;
 		while (--i >= 0)
 		{
-		  UpVal uv = (UpVal)openupval[i];
-		  if (uv.offset() == idx)
+		  UpVal uv2 = (UpVal)openupval[i];
+		  if (uv2.offset() == idx)
 		  {
-			return uv;
+			return uv2;
 		  }
-		  if (uv.offset() < idx)
+		  if (uv2.offset() < idx)
 		  {
 			break;
 		  }
@@ -2483,8 +2483,8 @@ protectBreak:
 		{
 		  source = source.Substring(1);
 		  len -= " '...' ".Length;
-		  int l = source.Length;
-		  if (l > len)
+		  int l2 = source.Length;
+		  if (l2 > len)
 		  {
 			return "..." + source.Substring(source.Length - len, source.Length - (source.Length - len)); // get last part of file name
 		  }
@@ -2756,7 +2756,7 @@ protectBreak:
 	  /// </summary>
 	  private Slot RK(int field)
 	  {
-		LuaFunction function = (LuaFunction)stack[ci().function()].r;
+		LuaFunction function = (LuaFunction)stack[__ci().function()].r;
 		Slot[] k = function.proto().constant();
 		return RK(k, field);
 	  }
@@ -2978,7 +2978,7 @@ protectBreak:
 		while (true)
 		{
 		  // assert stack[ci.function()].r instanceof LuaFunction;
-		  LuaFunction function = (LuaFunction)stack[ci().function()].r;
+		  LuaFunction function = (LuaFunction)stack[__ci().function()].r;
 		  Proto proto = function.proto();
 		  int[] code = proto.code();
 		  Slot[] k = proto.constant();
@@ -3181,13 +3181,13 @@ protectBreak:
 				rc = RK(k, ARGC(i));
 				if (rb.r == NUMBER && rc.r == NUMBER)
 				{
-				  double modulus = modulus(rb.d, rc.d);
+				  double modulus = Lua.modulus(rb.d, rc.d);
 				  stack[@base + a].d = modulus;
 				  stack[@base + a].r = NUMBER;
 				}
 				else if (toNumberPair(rb, rc, NUMOP))
 				{
-				  double modulus = modulus(NUMOP[0], NUMOP[1]);
+				  double modulus = Lua.modulus(NUMOP[0], NUMOP[1]);
 				  stack[@base + a].d = modulus;
 				  stack[@base + a].r = NUMBER;
 				}
@@ -3351,7 +3351,7 @@ protectBreak:
 					// Was Java function called by precall, adjust result
 					if (nresults >= 0)
 					{
-					  stacksetsize(ci().top());
+					  stacksetsize(__ci().top());
 					}
 					continue;
 				  default:
@@ -3373,9 +3373,9 @@ protectBreak:
 				  case PCRLUA:
 				  {
 					// tail call: put new frame in place of previous one.
-					CallInfo ci = (CallInfo)civ.elementAt(civ.Count - 2);
+					CallInfo ci = (CallInfo)civ.elementAt(civ.getSize() - 2);
 					int func = ci.function();
-					CallInfo fci = ci(); // Fresh CallInfo
+					CallInfo fci = __ci(); // Fresh CallInfo
 					int pfunc = fci.function();
 					fClose(ci.@base());
 					@base = func + (fci.@base() - pfunc);
@@ -3421,7 +3421,7 @@ protectBreak:
 				}
 				if (adjust)
 				{
-				  stacksetsize(ci().top());
+				  stacksetsize(__ci().top());
 				}
 				goto reentryContinue;
 			  }
@@ -3479,7 +3479,7 @@ protectBreak:
 				stacksetsize(cb + 3);
 				savedpc = pc; // Protect
 				vmCall(cb, ARGC(i));
-				stacksetsize(ci().top());
+				stacksetsize(__ci().top());
 				if (NIL != stack[cb].r) // continue loop
 				{
 				  stack[cb - 1].r = stack[cb].r;
@@ -3514,7 +3514,7 @@ protectBreak:
 				}
 				if (setstack)
 				{
-				  stacksetsize(ci().top());
+				  stacksetsize(__ci().top());
 				}
 				continue;
 			  }
@@ -3546,7 +3546,7 @@ protectBreak:
 			  case OP_VARARG:
 			  {
 				int b = ARGB(i) - 1;
-				int n = (@base - ci().function()) - function.proto().numparams() - 1;
+				int n = (@base - __ci().function()) - function.proto().numparams() - 1;
 				if (b == MULTRET)
 				{
 				  // :todo: Protect
@@ -3742,7 +3742,7 @@ protectBreak:
 		// we are returning to.
 		int res = lci.res();
 		int wanted = lci.nresults(); // Caution: wanted could be == MULTRET
-		CallInfo cci = ci(); // Continuation CallInfo
+		CallInfo cci = __ci(); // Continuation CallInfo
 		@base = cci.@base();
 		savedpc = cci.savedpc();
 		// Move results (and pad with nils to required number if necessary)
@@ -3793,7 +3793,7 @@ protectBreak:
 		{
 		  faso = tryfuncTM(func);
 		}
-		ci().Savedpc = savedpc;
+		__ci().Savedpc = savedpc;
 		if (faso is LuaFunction)
 		{
 		  LuaFunction f = (LuaFunction)faso;
@@ -4349,7 +4349,7 @@ protectBreak:
 	  /// Lua's is False predicate. </summary>
 	  private bool isFalse(object o)
 	  {
-		return o == NIL || o == false;
+		return o == NIL || (bool)o == false;
 	  }
 
 	  /// @deprecated DO NOT CALL. 
@@ -4371,7 +4371,7 @@ protectBreak:
 	  /// Pop topmost CallInfo record and return it. </summary>
 	  private CallInfo dec_ci()
 	  {
-		CallInfo ci = (CallInfo)civ.Pop();
+		CallInfo ci = (CallInfo)civ.pop();
 		return ci;
 	  }
 
@@ -4379,7 +4379,7 @@ protectBreak:
 	  /// Equivalent to resume_error from ldo.c </summary>
 	  private int resume_error(string msg)
 	  {
-		stacksetsize(ci().@base());
+		stacksetsize(__ci().@base());
 		stackAdd(msg);
 		return ERRRUN;
 	  }
@@ -4548,7 +4548,8 @@ protectBreak:
 		   * possible UnsupportedEncodingException is left to be thrown
 		   * (it's a subclass of IOException which is declared to be thrown).
 		   */
-		  sbyte[] contents = s.GetBytes("UTF-8");
+          byte[] contents = new byte[Encoding.GetEncoding("UTF-8").GetByteCount(s)];
+          Encoding.GetEncoding("UTF-8").GetBytes(s, 0, s.Length, contents, 0);
 		  int size = contents.Length;
 		  DumpInt(size+1);
 		  writer.write(contents, 0, size);

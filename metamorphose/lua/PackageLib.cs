@@ -1,4 +1,5 @@
 using System.Text;
+using metamorphose.java;
 
 /*  $Header: //info.ravenbrook.com/project/jili/version/1.1/code/mnj/lua/PackageLib.java#1 $
  * Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies).
@@ -354,7 +355,7 @@ namespace metamorphose.lua
 
 	  private static bool readable(string filename)
 	  {
-		InputStream f = typeof(PackageLib).getResourceAsStream(filename);
+		InputStream f = SystemUtil.getResourceAsStream(filename);
 		if (f == null)
 		{
 		  return false;

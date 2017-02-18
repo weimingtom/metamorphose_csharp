@@ -514,7 +514,7 @@ namespace metamorphose.lua
 		L.checkType(1, Lua.TTABLE);
 		L.push(PAIRS_AUX_FUN); // return generator,
 		LuaTable t = (LuaTable)L.value(1);
-		L.push(new object[] {t, t.Keys.GetEnumerator()}); // state,
+		L.push(new object[] {t, t.keys()}); // state,
 		L.push(Lua.NIL); // and initial value.
 		return 3;
 	  }

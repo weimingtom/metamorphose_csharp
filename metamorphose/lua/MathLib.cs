@@ -1,4 +1,5 @@
 using System;
+using metamorphose.java;
 
 /*  $Header: //info.ravenbrook.com/project/jili/version/1.1/code/mnj/lua/MathLib.java#1 $
  * Copyright (c) 2006 Nokia Corporation and/or its subsidiary(-ies).
@@ -70,7 +71,7 @@ namespace metamorphose.lua
 	  //private static final int tanh = 26;
 	  private const int TAN = 27;
 
-	  private static readonly Random rng = new Random();
+	  private static Random rng = new Random();
 
 	  /// <summary>
 	  /// Which library function this object represents.  This value should
@@ -190,7 +191,7 @@ namespace metamorphose.lua
 
 	  private static int deg(Lua L)
 	  {
-		L.pushNumber(Math.toDegrees(L.checkNumber(1)));
+		L.pushNumber(MathUtil.toDegrees(L.checkNumber(1)));
 		return 1;
 	  }
 
@@ -257,7 +258,7 @@ namespace metamorphose.lua
 
 	  private static int rad(Lua L)
 	  {
-		L.pushNumber(Math.toRadians(L.checkNumber(1)));
+		L.pushNumber(MathUtil.toRadians(L.checkNumber(1)));
 		return 1;
 	  }
 
@@ -299,7 +300,7 @@ namespace metamorphose.lua
 
 	  private static int randomseed(Lua L)
 	  {
-		rng.Seed = (long)L.checkNumber(1);
+        rng = new Random((int)L.checkNumber(1));
 		return 0;
 	  }
 

@@ -45,39 +45,39 @@ namespace metamorphose.lua
 
 	  // WARNING: if you change the order of this enumeration,
 	  // grep "ORDER RESERVED"
-	  private static readonly int TK_AND = FIRST_RESERVED + 0;
-	  private static readonly int TK_BREAK = FIRST_RESERVED + 1;
-	  private static readonly int TK_DO = FIRST_RESERVED + 2;
-	  private static readonly int TK_ELSE = FIRST_RESERVED + 3;
-	  private static readonly int TK_ELSEIF = FIRST_RESERVED + 4;
-	  private static readonly int TK_END = FIRST_RESERVED + 5;
-	  private static readonly int TK_FALSE = FIRST_RESERVED + 6;
-	  private static readonly int TK_FOR = FIRST_RESERVED + 7;
-	  private static readonly int TK_FUNCTION = FIRST_RESERVED + 8;
-	  private static readonly int TK_IF = FIRST_RESERVED + 9;
-	  private static readonly int TK_IN = FIRST_RESERVED + 10;
-	  private static readonly int TK_LOCAL = FIRST_RESERVED + 11;
-	  private static readonly int TK_NIL = FIRST_RESERVED + 12;
-	  private static readonly int TK_NOT = FIRST_RESERVED + 13;
-	  private static readonly int TK_OR = FIRST_RESERVED + 14;
-	  private static readonly int TK_REPEAT = FIRST_RESERVED + 15;
-	  private static readonly int TK_RETURN = FIRST_RESERVED + 16;
-	  private static readonly int TK_THEN = FIRST_RESERVED + 17;
-	  private static readonly int TK_TRUE = FIRST_RESERVED + 18;
-	  private static readonly int TK_UNTIL = FIRST_RESERVED + 19;
-	  private static readonly int TK_WHILE = FIRST_RESERVED + 20;
-	  private static readonly int TK_CONCAT = FIRST_RESERVED + 21;
-	  private static readonly int TK_DOTS = FIRST_RESERVED + 22;
-	  private static readonly int TK_EQ = FIRST_RESERVED + 23;
-	  private static readonly int TK_GE = FIRST_RESERVED + 24;
-	  private static readonly int TK_LE = FIRST_RESERVED + 25;
-	  private static readonly int TK_NE = FIRST_RESERVED + 26;
-	  private static readonly int TK_NUMBER = FIRST_RESERVED + 27;
-	  private static readonly int TK_NAME = FIRST_RESERVED + 28;
-	  private static readonly int TK_STRING = FIRST_RESERVED + 29;
-	  private static readonly int TK_EOS = FIRST_RESERVED + 30;
+	  private static const int TK_AND = FIRST_RESERVED + 0;
+	  private static const int TK_BREAK = FIRST_RESERVED + 1;
+	  private static const int TK_DO = FIRST_RESERVED + 2;
+	  private static const int TK_ELSE = FIRST_RESERVED + 3;
+	  private static const int TK_ELSEIF = FIRST_RESERVED + 4;
+	  private static const int TK_END = FIRST_RESERVED + 5;
+	  private static const int TK_FALSE = FIRST_RESERVED + 6;
+	  private static const int TK_FOR = FIRST_RESERVED + 7;
+	  private static const int TK_FUNCTION = FIRST_RESERVED + 8;
+	  private static const int TK_IF = FIRST_RESERVED + 9;
+	  private static const int TK_IN = FIRST_RESERVED + 10;
+	  private static const int TK_LOCAL = FIRST_RESERVED + 11;
+	  private static const int TK_NIL = FIRST_RESERVED + 12;
+	  private static const int TK_NOT = FIRST_RESERVED + 13;
+	  private static const int TK_OR = FIRST_RESERVED + 14;
+	  private static const int TK_REPEAT = FIRST_RESERVED + 15;
+	  private static const int TK_RETURN = FIRST_RESERVED + 16;
+	  private static const int TK_THEN = FIRST_RESERVED + 17;
+	  private static const int TK_TRUE = FIRST_RESERVED + 18;
+	  private static const int TK_UNTIL = FIRST_RESERVED + 19;
+	  private static const int TK_WHILE = FIRST_RESERVED + 20;
+	  private static const int TK_CONCAT = FIRST_RESERVED + 21;
+	  private static const int TK_DOTS = FIRST_RESERVED + 22;
+	  private static const int TK_EQ = FIRST_RESERVED + 23;
+	  private static const int TK_GE = FIRST_RESERVED + 24;
+	  private static const int TK_LE = FIRST_RESERVED + 25;
+	  private static const int TK_NE = FIRST_RESERVED + 26;
+	  private static const int TK_NUMBER = FIRST_RESERVED + 27;
+	  private static const int TK_NAME = FIRST_RESERVED + 28;
+	  private static const int TK_STRING = FIRST_RESERVED + 29;
+	  private static const int TK_EOS = FIRST_RESERVED + 30;
 
-	  private static readonly int NUM_RESERVED = TK_WHILE - FIRST_RESERVED + 1;
+	  private static const int NUM_RESERVED = TK_WHILE - FIRST_RESERVED + 1;
 
 	  /// <summary>
 	  /// Equivalent to luaX_tokens.  ORDER RESERVED </summary>

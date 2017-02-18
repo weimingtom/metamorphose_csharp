@@ -179,7 +179,7 @@ namespace metamorphose.lua
 		double max = 0;
 		L.checkType(1, Lua.TTABLE);
 		LuaTable t = (LuaTable)L.value(1);
-        Enumerator e = t.Keys();
+        Enumeration e = t.keys();
 		while (e.hasMoreElements())
 		{
 		  object o = e.nextElement();

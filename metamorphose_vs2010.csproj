@@ -40,13 +40,16 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="metamorphose\java\ByteArrayOutputStream.cs" />
     <Compile Include="metamorphose\java\DataOutputStream.cs" />
     <Compile Include="metamorphose\java\Enumeration.cs" />
     <Compile Include="metamorphose\java\EOFException.cs" />
     <Compile Include="metamorphose\java\Hashtable.cs" />
     <Compile Include="metamorphose\java\HashtableEnum.cs" />
     <Compile Include="metamorphose\java\InputStream.cs" />
+    <Compile Include="metamorphose\java\InputStreamReader.cs" />
     <Compile Include="metamorphose\java\IOException.cs" />
+    <Compile Include="metamorphose\java\MathUtil.cs" />
     <Compile Include="metamorphose\java\NumberFormatException.cs" />
     <Compile Include="metamorphose\java\OutputStream.cs" />
     <Compile Include="metamorphose\java\PrintStream.cs" />
@@ -54,6 +57,7 @@
     <Compile Include="metamorphose\java\Runtime.cs" />
     <Compile Include="metamorphose\java\Stack.cs" />
     <Compile Include="metamorphose\java\SystemUtil.cs" />
+    <Compile Include="metamorphose\java\TimeZone.cs" />
     <Compile Include="metamorphose\launcher\Launcher.cs" />
     <Compile Include="metamorphose\lua\BaseLib.cs">
       <SubType>Code</SubType>

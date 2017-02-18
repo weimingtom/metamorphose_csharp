@@ -41,7 +41,7 @@ namespace metamorphose.java
 			return null;
 		}
 		
-		public static double currentTimeMillis()
+		public static long currentTimeMillis()
 		{
 			return 0;
 		}

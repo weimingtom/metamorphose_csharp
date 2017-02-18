@@ -117,7 +117,7 @@ namespace metamorphose.lua
 		L.setField(lib, name, f);
 	  }
 
-      private static readonly long T0 = SystemUtil.currentTimeMillis();
+      private static readonly long T0 = (long)SystemUtil.currentTimeMillis();
 
 	  /// <summary>
 	  /// Implements clock.  Java provides no way to get CPU time, so we
@@ -148,10 +148,10 @@ namespace metamorphose.lua
 		}
 
 		string s = L.optString(1, "%c");
-		TimeZone tz = TimeZone.Default;
+        metamorphose.java.TimeZone tz = metamorphose.java.TimeZone.getDefault();
 		if (s.StartsWith("!"))
 		{
-		  tz = TimeZone.getTimeZone("GMT");
+		  tz = metamorphose.java.TimeZone.getTimeZone("GMT");
 		  s = s.Substring(1);
 		}
 
@@ -441,7 +441,7 @@ namespace metamorphose.lua
 	  private static int getenv(Lua L)
 	  {
 		string name = L.checkString(1);
-		string value = System.getenv(name);
+		string value = SystemUtil.getenv(name);
 		if (value == null)
 		{
 			L.pushNil();
