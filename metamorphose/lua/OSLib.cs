@@ -155,19 +155,19 @@ namespace metamorphose.lua
 		  s = s.Substring(1);
 		}
 
-		DateTime c = DateTime.getInstance(tz);
-		c = new DateTime(new DateTime(t));
+        Calendar c = Calendar.getInstance(tz);
+		c.setTime(new DateTime(t));
 
 		if (s.Equals("*t"))
 		{
 		  L.push(L.createTable(0, 8)); // 8 = number of fields
-		  setfield(L, "sec", c.Second);
-		  setfield(L, "min", c.Minute);
-		  setfield(L, "hour", c.Hour);
-		  setfield(L, "day", c.Day);
-		  setfield(L, "month", canonicalmonth(c.Month));
-		  setfield(L, "year", c.Year);
-		  setfield(L, "wday", canonicalweekday(c.DayOfWeek));
+		  setfield(L, "sec", c._get(Calendar.SECOND));
+		  setfield(L, "min", c._get(Calendar.MINUTE));
+		  setfield(L, "hour", c._get(Calendar.HOUR));
+		  setfield(L, "day", c._get(Calendar.DAY_OF_MONTH));
+		  setfield(L, "month", canonicalmonth(c._get(Calendar.MONTH)));
+		  setfield(L, "year", c._get(Calendar.YEAR));
+		  setfield(L, "wday", canonicalweekday(c._get(Calendar.DAY_OF_WEEK)));
 		  // yday is not supported because CLDC 1.1 does not provide it.
 		  // setfield(L, "yday", c.get("???"));
 		  if (tz.useDaylightTime())
@@ -218,19 +218,19 @@ namespace metamorphose.lua
 				b.Append(monthname(c));
 				break;
 			  case 'c':
-				b.Append(c.Ticks.ToString());
+				b.Append(c.getTime().ToString());
 				//FIXME:should be this
 				//b.append(String.format("%tc", c));
 				break;
 			  case 'd':
-				b.Append(format(c.Day, 2));
+                b.Append(format(c._get(Calendar.DAY_OF_MONTH), 2));
 				break;
 			  case 'H':
-				b.Append(format(c.Hour, 2));
+				b.Append(format(c._get(Calendar.HOUR), 2));
 				break;
 			  case 'I':
 			  {
-				  int h = c.Hour;
+				  int h = c._get(Calendar.HOUR);
 				  h = (h + 11) % 12 + 1; // force into range 1-12
 				  b.Append(format(h, 2));
 			  }
@@ -244,50 +244,50 @@ namespace metamorphose.lua
 				break;
 			  case 'm':
 			  {
-				  int m = canonicalmonth(c.Month);
+				  int m = canonicalmonth(c._get(Calendar.MONTH));
 				  b.Append(format(m, 2));
 			  }
 				break;
 			  case 'M':
-				b.Append(format(c.Minute, 2));
+				b.Append(format(c._get(Calendar.MINUTE), 2));
 				break;
 			  case 'p':
 			  {
-				  int h = c.Hour;
+				  int h = c._get(Calendar.HOUR);
 				  b.Append(h < 12 ? "am" : "pm");
 			  }
 				break;
 			  case 'S':
-				b.Append(format(c.Second, 2));
+				b.Append(format(c._get(Calendar.SECOND), 2));
 				break;
 			  case 'w':
-				b.Append(canonicalweekday(c.DayOfWeek));
+				b.Append(canonicalweekday(c._get(Calendar.DAY_OF_WEEK)));
 				break;
 			  case 'x':
 			  {
-				  string u = c.Ticks.ToString();
+				  string u = c.getTime().ToString();
 				  // We extract fields from the result of Date.toString.
 				  // The output of which is of the form:
 				  // dow mon dd hh:mm:ss zzz yyyy
 				  // except that zzz is optional.
 				  b.Append(u.Substring(0, 11));
-				  b.Append(c.Year);
+				  b.Append(c._get(Calendar.YEAR));
 			  }
 				break;
 			  case 'X':
 			  {
-				  string u = c.Ticks.ToString();
+				  string u = c.getTime().ToString();
 				  b.Append(u.Substring(11, u.Length - 5 - 11));
 			  }
 				break;
 			  case 'y':
-				b.Append(format(c.Year % 100, 2));
+				b.Append(format(c._get(Calendar.YEAR) % 100, 2));
 				break;
 			  case 'Y':
-				b.Append(c.Year);
+                b.Append(c._get(Calendar.YEAR));
 				break;
 			  case 'Z':
-				b.Append(tz.ID);
+				b.Append(tz.getID());
 				break;
 			  case '%':
 				b.Append('%');
@@ -341,15 +341,15 @@ namespace metamorphose.lua
 		}
 		L.checkType(1, Lua.TTABLE);
 		L.Top = 1; // make sure table is at the top
-		DateTime c = new DateTime();
-		c.set(DateTime.SECOND, getfield(L, "sec", 0));
-		c.set(DateTime.MINUTE, getfield(L, "min", 0));
-		c.set(DateTime.HOUR, getfield(L, "hour", 12));
-		c.set(DateTime.DAY_OF_MONTH, getfield(L, "day", -1));
-		c.set(DateTime.MONTH, MONTH[getfield(L, "month", -1) - 1]);
-		c.set(DateTime.YEAR, getfield(L, "year", -1));
+        Calendar c = Calendar.getInstance();
+        c._set(Calendar.SECOND, getfield(L, "sec", 0));
+        c._set(Calendar.MINUTE, getfield(L, "min", 0));
+        c._set(Calendar.HOUR, getfield(L, "hour", 12));
+        c._set(Calendar.DAY_OF_MONTH, getfield(L, "day", -1));
+        c._set(Calendar.MONTH, MONTH[getfield(L, "month", -1) - 1]);
+        c._set(Calendar.YEAR, getfield(L, "year", -1));
 		// ignore isdst field
-		L.pushNumber(c.Ticks.Time);
+		L.pushNumber(c.getTime().Ticks); //FIXME:
 		return 1;
 	  }
 
@@ -387,15 +387,15 @@ namespace metamorphose.lua
 		return b.ToString();
 	  }
 
-	  private static string weekdayname(DateTime c)
+      private static string weekdayname(Calendar c)
 	  {
-		string s = c.Ticks.ToString();
+		string s = c.getTime().ToString();
 		return s.Substring(0, 3);
 	  }
 
-	  private static string monthname(DateTime c)
+      private static string monthname(Calendar c)
 	  {
-		string s = c.Ticks.ToString();
+		string s = c.getTime().ToString();
 		return s.Substring(4, 3);
 	  }
 
@@ -417,7 +417,15 @@ namespace metamorphose.lua
 	  }
 
 	  // DO NOT MODIFY ARRAY
-	  private static readonly int[] WEEKDAY = new int[] {DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday};
+	  private static readonly int[] WEEKDAY = new int[] {
+          Calendar.SUNDAY, 
+          Calendar.MONDAY, 
+          Calendar.TUESDAY, 
+          Calendar.WEDNESDAY, 
+          Calendar.THURSDAY, 
+          Calendar.FRIDAY,
+          Calendar.SATURDAY
+      };
 
 	  /// <summary>
 	  /// Converts from a <seealso cref="Calendar"/> value to a weekday in the range

@@ -200,8 +200,8 @@ namespace metamorphose.lua
 	  {
 		int totaluse = 0; // total number of elements
 		int ause = 0; // summation of nums
-		System.Collections.IEnumerator e;
-		e = base.Keys.GetEnumerator();
+        Enumeration e;
+		e = base.keys();
 		while (e.hasMoreElements())
 		{
 		  object o = e.nextElement();
@@ -235,7 +235,7 @@ namespace metamorphose.lua
 		  for (int i = array.Length; i < nasize; ++i)
 		  {
 			object key = new double?(i + 1);
-			object v = base.Remove(key);
+			object v = base.remove(key);
 			if (v == null)
 			{
 			  v = Lua.NIL;
@@ -252,7 +252,7 @@ namespace metamorphose.lua
 			if (array[i] != Lua.NIL)
 			{
 			  object key = new double?(i + 1);
-			  base[key] = array[i];
+			  base.put(key, this.array[i]);
 			}
 		  }
 		  Array.Copy(array, 0, newarray, 0, newarray.Length);
@@ -310,20 +310,20 @@ namespace metamorphose.lua
 		if (j > 0 && array[j - 1] == Lua.NIL)
 		{
 		  // there is a boundary in the array part: (binary) search for it
-		  int i = 0;
-		  while (j - i > 1)
+		  int i2 = 0;
+		  while (j - i2 > 1)
 		  {
-			int m = (i + j) / 2;
+			int m = (i2 + j) / 2;
 			if (array[m - 1] == Lua.NIL)
 			{
 			  j = m;
 			}
 			else
 			{
-			  i = m;
+			  i2 = m;
 			}
 		  }
-		  return i;
+		  return i2;
 		}
 
 		// unbound_search
@@ -382,7 +382,7 @@ namespace metamorphose.lua
 			}
 		  }
 		}
-		object r = base[key];
+		object r = base._get(key);
 		if (r == null)
 		{
 		  r = Lua.NIL;
@@ -409,7 +409,7 @@ namespace metamorphose.lua
 			}
 		  }
 		}
-		object r = base[key.asObject()];
+		object r = base._get(key.asObject());
 		if (r == null)
 		{
 		  r = Lua.NIL;
@@ -425,7 +425,7 @@ namespace metamorphose.lua
 		{
 		  return array[k - 1];
 		}
-		object r = base[new double?(k)];
+		object r = base._get(new double?(k));
 		if (r == null)
 		{
 		  return Lua.NIL;
@@ -478,7 +478,7 @@ namespace metamorphose.lua
 		  remove(key);
 		  return;
 		}
-		base[key] = value;
+		base.put(key, value);
 		// This check is necessary because sometimes the call to super.put
 		// can rehash and the new (k,v) pair should be in the array part
 		// after the rehash, but is still in the hash part.
@@ -517,7 +517,7 @@ namespace metamorphose.lua
 		  remove(k);
 		  return;
 		}
-		base[k] = value;
+		base.put(k, value);
 		if (i <= sizeArray)
 		{
 		  remove(k);

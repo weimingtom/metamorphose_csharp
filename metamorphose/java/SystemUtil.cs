@@ -45,5 +45,10 @@ namespace metamorphose.java
 		{
 			return 0;
 		}
+
+        public static String getenv(String name)
+        {
+            return null;
+        }
     }
 }

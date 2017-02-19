@@ -45,39 +45,39 @@ namespace metamorphose.lua
 
 	  // WARNING: if you change the order of this enumeration,
 	  // grep "ORDER RESERVED"
-	  private static const int TK_AND = FIRST_RESERVED + 0;
-	  private static const int TK_BREAK = FIRST_RESERVED + 1;
-	  private static const int TK_DO = FIRST_RESERVED + 2;
-	  private static const int TK_ELSE = FIRST_RESERVED + 3;
-	  private static const int TK_ELSEIF = FIRST_RESERVED + 4;
-	  private static const int TK_END = FIRST_RESERVED + 5;
-	  private static const int TK_FALSE = FIRST_RESERVED + 6;
-	  private static const int TK_FOR = FIRST_RESERVED + 7;
-	  private static const int TK_FUNCTION = FIRST_RESERVED + 8;
-	  private static const int TK_IF = FIRST_RESERVED + 9;
-	  private static const int TK_IN = FIRST_RESERVED + 10;
-	  private static const int TK_LOCAL = FIRST_RESERVED + 11;
-	  private static const int TK_NIL = FIRST_RESERVED + 12;
-	  private static const int TK_NOT = FIRST_RESERVED + 13;
-	  private static const int TK_OR = FIRST_RESERVED + 14;
-	  private static const int TK_REPEAT = FIRST_RESERVED + 15;
-	  private static const int TK_RETURN = FIRST_RESERVED + 16;
-	  private static const int TK_THEN = FIRST_RESERVED + 17;
-	  private static const int TK_TRUE = FIRST_RESERVED + 18;
-	  private static const int TK_UNTIL = FIRST_RESERVED + 19;
-	  private static const int TK_WHILE = FIRST_RESERVED + 20;
-	  private static const int TK_CONCAT = FIRST_RESERVED + 21;
-	  private static const int TK_DOTS = FIRST_RESERVED + 22;
-	  private static const int TK_EQ = FIRST_RESERVED + 23;
-	  private static const int TK_GE = FIRST_RESERVED + 24;
-	  private static const int TK_LE = FIRST_RESERVED + 25;
-	  private static const int TK_NE = FIRST_RESERVED + 26;
-	  private static const int TK_NUMBER = FIRST_RESERVED + 27;
-	  private static const int TK_NAME = FIRST_RESERVED + 28;
-	  private static const int TK_STRING = FIRST_RESERVED + 29;
-	  private static const int TK_EOS = FIRST_RESERVED + 30;
+	  private const int TK_AND = FIRST_RESERVED + 0;
+	  private const int TK_BREAK = FIRST_RESERVED + 1;
+	  private const int TK_DO = FIRST_RESERVED + 2;
+	  private const int TK_ELSE = FIRST_RESERVED + 3;
+	  private const int TK_ELSEIF = FIRST_RESERVED + 4;
+	  private const int TK_END = FIRST_RESERVED + 5;
+	  private const int TK_FALSE = FIRST_RESERVED + 6;
+	  private const int TK_FOR = FIRST_RESERVED + 7;
+	  private const int TK_FUNCTION = FIRST_RESERVED + 8;
+	  private const int TK_IF = FIRST_RESERVED + 9;
+	  private const int TK_IN = FIRST_RESERVED + 10;
+	  private const int TK_LOCAL = FIRST_RESERVED + 11;
+	  private const int TK_NIL = FIRST_RESERVED + 12;
+	  private const int TK_NOT = FIRST_RESERVED + 13;
+	  private const int TK_OR = FIRST_RESERVED + 14;
+	  private const int TK_REPEAT = FIRST_RESERVED + 15;
+	  private const int TK_RETURN = FIRST_RESERVED + 16;
+	  private const int TK_THEN = FIRST_RESERVED + 17;
+	  private const int TK_TRUE = FIRST_RESERVED + 18;
+	  private const int TK_UNTIL = FIRST_RESERVED + 19;
+	  private const int TK_WHILE = FIRST_RESERVED + 20;
+	  private const int TK_CONCAT = FIRST_RESERVED + 21;
+	  private const int TK_DOTS = FIRST_RESERVED + 22;
+	  private const int TK_EQ = FIRST_RESERVED + 23;
+	  private const int TK_GE = FIRST_RESERVED + 24;
+	  private const int TK_LE = FIRST_RESERVED + 25;
+	  private const int TK_NE = FIRST_RESERVED + 26;
+	  private const int TK_NUMBER = FIRST_RESERVED + 27;
+	  private const int TK_NAME = FIRST_RESERVED + 28;
+	  private const int TK_STRING = FIRST_RESERVED + 29;
+	  private const int TK_EOS = FIRST_RESERVED + 30;
 
-	  private static const int NUM_RESERVED = TK_WHILE - FIRST_RESERVED + 1;
+	  private const int NUM_RESERVED = TK_WHILE - FIRST_RESERVED + 1;
 
 	  /// <summary>
 	  /// Equivalent to luaX_tokens.  ORDER RESERVED </summary>
@@ -88,7 +88,7 @@ namespace metamorphose.lua
 	  {
 		for (int i = 0; i < NUM_RESERVED; ++i)
 		{
-		  reserved[tokens[i]] = new int?(FIRST_RESERVED + i);
+		  reserved.put(tokens[i], new int?(FIRST_RESERVED + i));
 		}
 	  }
 
@@ -234,7 +234,7 @@ namespace metamorphose.lua
 
 	  private bool check_next(string set)
 	  {
-		if (set.IndexOf(current) < 0)
+		if (set.IndexOf((char)current) < 0) //FIXME:
 		{
 		  return false;
 		}
@@ -359,11 +359,11 @@ namespace metamorphose.lua
 			  next();
 			  if (current == '[')
 			  {
-				int sep = skip_sep();
+				int sep2 = skip_sep();
 				buff.Length = 0; // `skip_sep' may dirty the buffer
-				if (sep >= 0)
+				if (sep2 >= 0)
 				{
-				  read_long_string(false, sep); // long comment
+				  read_long_string(false, sep2); // long comment
 				  buff.Length = 0;
 				  continue;
 				}
@@ -485,7 +485,7 @@ namespace metamorphose.lua
 				  save_and_next();
 				} while (isalnum(current) || current == '_');
 				string s = buff.ToString();
-				object t = reserved[s];
+				object t = reserved._get(s);
 				if (t == null)
 				{
 				  semS = s;

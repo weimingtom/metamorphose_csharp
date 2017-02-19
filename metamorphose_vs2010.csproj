@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="metamorphose\java\ByteArrayOutputStream.cs" />
+    <Compile Include="metamorphose\java\Calendar.cs" />
     <Compile Include="metamorphose\java\DataOutputStream.cs" />
     <Compile Include="metamorphose\java\Enumeration.cs" />
     <Compile Include="metamorphose\java\EOFException.cs" />

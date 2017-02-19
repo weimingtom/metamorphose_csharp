@@ -967,7 +967,8 @@ namespace metamorphose.lua
 	  {
 		l = check_capture(l);
 		int len = captureLen(l);
-		if (end - si >= len && src.regionMatches(false, captureInit(l), src, si, len))
+		if (end - si >= len)
+        //FIXME:&& src.regionMatches(false, captureInit(l), src, si, len)
 		{
 		  return si + len;
 		}
@@ -1051,7 +1052,7 @@ namespace metamorphose.lua
 					// else return match(ms, s, ep);
 				}
 				  goto initContinue; // goto init
-
+                  
 				default:
 				  if (Syntax.isdigit(p[pi + 1])) // capture results (%0-%09)?
 				  {
@@ -1068,9 +1069,12 @@ namespace metamorphose.lua
 				  // case (of the outer switch) and making sure that the
 				  // next case has no effect when we fallthrough to it from here.
 				  // goto dflt;
+                  break; //FIXME:
 			  }
 			  // FALLTHROUGH
+              //FIXME:
 				goto case '$';
+
 			case '$':
 			  if (p[pi] == '$')
 			  {
@@ -1080,7 +1084,8 @@ namespace metamorphose.lua
 				}
 				// else goto dflt;
 			  }
-			  // FALLTHROUGH
+              goto default; //FIXME:
+              // FALLTHROUGH
 			default: // it is a pattern item
 			{
 				int ep = classend(p, pi); // indexes what is next

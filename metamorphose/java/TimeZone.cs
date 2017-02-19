@@ -21,5 +21,15 @@ namespace metamorphose.java
         {
             return null;
         }
+
+        public bool useDaylightTime()
+        {
+            return true;
+        }
+
+        public String getID()
+        {
+            return null;
+        }
     }
 }
