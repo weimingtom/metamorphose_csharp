@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace metamorphose.java
 {
@@ -36,30 +37,57 @@ namespace metamorphose.java
 		public const int DECEMBER = 26;
 		
         private static Calendar _instance = new Calendar();
-
-        public static Calendar getInstance(TimeZone t = null)
-		{
-			return Calendar._instance;
-		}
-
-        public void setTime(DateTime d)
-		{
-
-		}
+        private DateTime _date;
 
         public int _get(int field)
         {
-            return 0;
-        }
+            switch (field)
+            {
+                case SECOND:
+                    return this._date.Second;
 
-        public DateTime getTime()
-        {
-            return DateTime.Now;
+                case MINUTE:
+                    return this._date.Minute;
+
+                case HOUR:
+                    return this._date.Hour;
+
+                case MONTH:
+                    return this._date.Month;
+
+                case YEAR:
+                    return this._date.Year;
+
+                case DAY_OF_WEEK:
+                    Debug.WriteLine("DAY_OF_WEEK not implement");
+                    return 0;
+
+                case DAY_OF_MONTH:
+                    return this._date.Day;
+            }
+            Debug.WriteLine("Calendar._get(): field not implement");
+            return 0;
         }
 
         public void _set(int field, int value)
         {
+            //FIXME:
+            Debug.WriteLine("Calendar._set(): field not implement");
+        }
 
+        public static Calendar getInstance(TimeZone t = null)
+        {
+            return Calendar._instance;
+        }
+
+        public void setTime(DateTime d)
+        {
+            this._date = d;
+        }
+
+        public DateTime getTime()
+        {
+            return this._date;
         }
     }
 }

@@ -40,6 +40,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="metamorphose\java\ByteArray.cs" />
     <Compile Include="metamorphose\java\ByteArrayOutputStream.cs" />
     <Compile Include="metamorphose\java\Calendar.cs" />
     <Compile Include="metamorphose\java\DataOutputStream.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="metamorphose\lua\UpVal.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="metamorphose\test\Test001.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

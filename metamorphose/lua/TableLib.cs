@@ -126,10 +126,10 @@ namespace metamorphose.lua
 		{
 		  object v = L.rawGetI(t, i);
 		  L.argCheck(L.isString(v), 1, "table contains non-strings");
-		  b.Append(L.ToString(v));
+		  b.Append(L.toString(v));
 		  if (i != last)
 		  {
-			b.Append(L.ToString(sep));
+			b.Append(L.toString(sep));
 		  }
 		}
 		L.pushString(b.ToString());

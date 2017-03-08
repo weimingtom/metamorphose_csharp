@@ -77,7 +77,7 @@ namespace metamorphose.lua
 		  }
 		  else if (L.isString(L.value(-1)))
 		  {
-			s = L.ToString(L.value(-1));
+			s = L.toString(L.value(-1));
 			if (s.Length == 0)
 			{
 			  return -1;

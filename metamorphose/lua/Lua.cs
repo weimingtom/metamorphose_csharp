@@ -1397,7 +1397,7 @@ protectBreak:
 	  /// does not modify the Lua value. </summary>
 	  /// <param name="o">  Lua value to convert. </param>
 	  /// <returns>  The resulting string. </returns>
-	  public string ToString(object o)
+	  public string toString(object o)
 	  {
 		return vmTostring(o);
 	  }
@@ -1787,7 +1787,7 @@ protectBreak:
 	  /// <returns>  the argument as a string. </returns>
 	  public string checkString(int narg)
 	  {
-		string s = ToString(value(narg));
+		string s = toString(value(narg));
 		if (s == null)
 		{
 		  tagError(narg, TSTRING);

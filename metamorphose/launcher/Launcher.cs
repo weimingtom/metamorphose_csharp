@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using metamorphose.test;
 
 namespace metamorphose
 {
@@ -12,7 +13,8 @@ namespace metamorphose
             Application.SetCompatibleTextRenderingDefault(false);
             Form form1 = new Form();
             form1.Text = "hello";
-            Application.Run(form1);
+            new Test001();
+            //Application.Run(form1);
         }
     }
 }

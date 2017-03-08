@@ -20,28 +20,28 @@ namespace metamorphose.java
 		{
 			
 		}
-		
-		public void close()
+
+        public virtual void close()
 		{
 			throwError("OutputStream.close() not implement");
 		}
-		
-		public void flush()
+
+        public virtual void flush()
 		{
 			throwError("OutputStream.flush() not implement");			
 		}
-		
-		public void write(char[] b)
+
+        public virtual void write(ByteArray b)
 		{
 			throwError("OutputStream.write() not implement");
 		}
-		
-		public void writeBytes(char[] b, int off, int len)
+
+        public virtual void writeBytes(ByteArray b, int off, int len)
 		{
 			throwError("OutputStream.writeBytes() not implement");
 		}
-		
-		public void writeChar(int b)
+
+        public virtual void writeChar(int b)
 		{
 			throwError("OutputStream.writeChar() not implement");				
 		}

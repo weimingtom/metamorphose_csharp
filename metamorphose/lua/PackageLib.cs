@@ -256,7 +256,7 @@ namespace metamorphose.lua
 		  object loader = L.rawGetI(loaders, i); // get a loader
 		  if (L.isNil(loader))
 		  {
-			L.error("module '" + name + "' not found:" + L.ToString(L.value(-1)));
+			L.error("module '" + name + "' not found:" + L.toString(L.value(-1)));
 		  }
 		  L.push(loader);
 		  L.pushString(name);
@@ -350,7 +350,7 @@ namespace metamorphose.lua
 
 	  private static void loaderror(Lua L, string filename)
 	  {
-		L.error("error loading module '" + L.ToString(L.value(1)) + "' from file '" + filename + "':\n\t" + L.ToString(L.value(-1)));
+		L.error("error loading module '" + L.toString(L.value(1)) + "' from file '" + filename + "':\n\t" + L.toString(L.value(-1)));
 	  }
 
 	  private static bool readable(string filename)
@@ -394,7 +394,7 @@ namespace metamorphose.lua
 	  private string findfile(Lua L, string name, string pname)
 	  {
 		name = gsub(name, ".", DIRSEP);
-		string path = L.ToString(L.getField(me, pname));
+		string path = L.toString(L.getField(me, pname));
 		if (path == null)
 		{
 		  L.error("'package." + pname + "' must be a string");
@@ -407,7 +407,7 @@ namespace metamorphose.lua
 		  {
 			break;
 		  }
-		  string filename = gsub(L.ToString(L.value(-1)), PATH_MARK, name);
+		  string filename = gsub(L.toString(L.value(-1)), PATH_MARK, name);
 		  if (readable(filename)) // does file exist and is readable?
 		  {
 			return filename; // return that file name

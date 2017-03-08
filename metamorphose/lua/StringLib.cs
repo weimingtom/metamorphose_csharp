@@ -219,12 +219,12 @@ namespace metamorphose.lua
 		{
 		  ByteArrayOutputStream s = new ByteArrayOutputStream();
 		  Lua.dump(L.value(1), s);
-		  byte[] a = s.toByteArray();
+		  ByteArray a = s.toByteArray();
 		  s = null;
 		  StringBuilder b = new StringBuilder();
-		  for (int i = 0; i < a.Length; ++i)
+		  for (int i = 0; i < a.getLength(); ++i)
 		  {
-			b.Append((char)(a[i] & 0xff));
+			b.Append((byte)(a.get(i) & 0xff));
 		  }
 		  L.pushString(b.ToString());
 		  return 1;
@@ -1182,7 +1182,7 @@ namespace metamorphose.lua
 	  /// A helper for gsub.  Equivalent to add_s from lstrlib.c. </summary>
 	  internal void adds(StringBuilder b, int si, int ei)
 	  {
-		string news = L.ToString(L.value(3));
+		string news = L.toString(L.value(3));
 		int l = news.Length;
 		for (int i = 0; i < l; ++i)
 		{
@@ -1204,7 +1204,7 @@ namespace metamorphose.lua
 			else
 			{
 			  // add capture to accumulated result
-			  b.Append(L.ToString(onecapture(news[i] - '1', si, ei)));
+			  b.Append(L.toString(onecapture(news[i] - '1', si, ei)));
 			}
 		  }
 		}
@@ -1248,7 +1248,7 @@ namespace metamorphose.lua
 		{
 		  L.error("invalid replacement value (a " + Lua.typeName(L.type(-1)) + ")");
 		}
-		b.Append(L.ToString(L.value(-1))); // add result to accumulator
+		b.Append(L.toString(L.value(-1))); // add result to accumulator
 		L.pop(1);
 	  }
 	}

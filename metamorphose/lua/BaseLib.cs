@@ -576,7 +576,7 @@ namespace metamorphose.lua
 		  L.push(tostring);
 		  L.pushValue(i);
 		  L.call(1, 1);
-		  string s = L.ToString(L.value(-1));
+		  string s = L.toString(L.value(-1));
 		  if (s == null)
 		  {
 			return L.error("'tostring' must return a string to 'print'");
@@ -628,7 +628,7 @@ namespace metamorphose.lua
 	  private static int select(Lua L)
 	  {
 		int n = L.Top;
-		if (L.type(1) == Lua.TSTRING && "#".Equals(L.ToString(L.value(1))))
+		if (L.type(1) == Lua.TSTRING && "#".Equals(L.toString(L.value(1))))
 		{
 		  L.pushNumber(n - 1);
 		  return 1;
@@ -731,7 +731,7 @@ namespace metamorphose.lua
 		switch (L.type(1))
 		{
 		  case Lua.TNUMBER:
-			L.push(L.ToString(o));
+			L.push(L.toString(o));
 			break;
 		  case Lua.TSTRING:
 			L.push(o);

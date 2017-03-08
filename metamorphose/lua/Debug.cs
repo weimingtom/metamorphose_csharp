@@ -30,7 +30,7 @@ namespace metamorphose.lua
 	/// because it is not intended to form part of the public API.  It has
 	/// only been implemented to the extent necessary for internal use.
 	/// </summary>
-	public sealed class Debug
+	public class Debug
 	{
 	  // private, no public accessors defined.
 	  private readonly int ici_Renamed;
