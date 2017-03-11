@@ -261,7 +261,7 @@ namespace metamorphose.lua
 		sizeArray = array.Length;
 	  }
 
-	  public void rehash()
+	  override public void rehash()
 	  {
 		bool oldinrehash = inrehash;
 		inrehash = true;
@@ -550,7 +550,7 @@ namespace metamorphose.lua
 		throw new System.ArgumentException();
 	  }
 
-      public Enumeration keys()
+      override public Enumeration keys()
 	  {
 		return new Enum(this, base.keys());
 	  }
@@ -559,7 +559,7 @@ namespace metamorphose.lua
 	  /// Do not use, implementation exists only to generate deprecated
 	  /// warning. </summary>
 	  /// @deprecated Use putlua instead. 
-	  public object put(object key, object value)
+	  override public object put(object key, object value)
 	  {
 		throw new System.ArgumentException();
 	  }

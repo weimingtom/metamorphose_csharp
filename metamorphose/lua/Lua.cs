@@ -387,9 +387,9 @@ namespace metamorphose.lua
 	  public const int HOOKCOUNT = 3;
 	  private const int HOOKTAILRET = 4;
 
-	  private static readonly int MASKCALL = 1 << HOOKCALL;
-	  private static readonly int MASKRET = 1 << HOOKRET;
-	  private static readonly int MASKLINE = 1 << HOOKLINE;
+	  private const int MASKCALL = 1 << HOOKCALL;
+	  private const int MASKRET = 1 << HOOKRET;
+	  private const int MASKLINE = 1 << HOOKLINE;
 	  /// <summary>
 	  /// Bitmask that specifies count hook in call to <seealso cref="#setHook"/>.
 	  /// </summary>

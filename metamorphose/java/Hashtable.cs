@@ -15,12 +15,12 @@ namespace metamorphose.java
 			
 		}
 		
-		public void rehash()
+		virtual public void rehash()
 		{
 			
 		}
 		
-		public Enumeration keys()
+		virtual public Enumeration keys()
 		{
 			HashtableEnum enum_ = new HashtableEnum();
 			Object[] arr = new Object[this._dic.Keys.Count];
@@ -36,13 +36,24 @@ namespace metamorphose.java
 		
 		public Object _get(Object key)
 		{
-			return this._dic[key];
+            if (this._dic.ContainsKey(key))
+            {
+			    return this._dic[key];
+            } 
+            else 
+            {
+                return null;
+            }
 		}
-		
-		public Object put(Object key, Object value)
+
+        virtual public Object put(Object key, Object value)
 		{
-			Object pre = this._dic[key];
-			this._dic[key] = value;
+            Object pre = null;
+            if (this._dic.ContainsKey(key))
+            {
+                pre = this._dic[key];
+            }
+            this._dic[key] = value;
 			return pre;
 		}
 		

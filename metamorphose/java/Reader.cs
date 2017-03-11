@@ -16,7 +16,7 @@ namespace metamorphose.java
         public Reader()
         {
 
-        }	
+        }
 
         virtual public void close()
 		{

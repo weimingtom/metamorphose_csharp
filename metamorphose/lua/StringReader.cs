@@ -29,7 +29,7 @@ namespace metamorphose.lua
 
 	/// <summary>
 	/// Ersatz replacement for <seealso cref="java.io.StringReader"/> from JSE. </summary>
-	internal sealed class StringReader : Reader
+	public class StringReader : Reader
 	{
 	  private string s;
 	  /// <summary>
@@ -45,22 +45,22 @@ namespace metamorphose.lua
 		this.s = s;
 	  }
 
-	  public void close()
+	  override public void close()
 	  {
 		current = -1;
 	  }
 
-	  public void mark(int limit)
+      override public void mark(int limit)
 	  {
 		mark_Renamed = current;
 	  }
 
-	  public bool markSupported()
+      override public bool markSupported()
 	  {
 		return true;
 	  }
 
-	  public int read()
+      override public int read()
 	  {
 		if (current < 0)
 		{
@@ -73,7 +73,7 @@ namespace metamorphose.lua
 		return s[current++];
 	  }
 
-	  public int read(char[] cbuf, int off, int len)
+      override public int read(char[] cbuf, int off, int len)
 	  {
 		if (current < 0 || len < 0)
 		{
@@ -95,7 +95,7 @@ namespace metamorphose.lua
 		return len;
 	  }
 
-	  public void reset()
+      override public void reset()
 	  {
 		current = mark_Renamed;
 	  }

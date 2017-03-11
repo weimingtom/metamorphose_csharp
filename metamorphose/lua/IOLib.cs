@@ -120,7 +120,7 @@ namespace metamorphose.lua
 		return pushresult(L, status, null);
 	  }
 
-	  private static int errno; //FIXME: not implemented
+	  private static int errno = 0; //FIXME: not implemented
 	  private static int pushresult(Lua L, int i, string filename)
 	  {
 		  int en = errno; // calls to Lua API may change this value
