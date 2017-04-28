@@ -7,11 +7,11 @@ https://github.com/Ravenbrook/jill
 
 ## Converting Tool  
 * Free Edition Java to C# Converter version 2.9    
-http://www.tangiblesoftwaresolutions.com/  
+https://www.tangiblesoftwaresolutions.com  
 https://www.tangiblesoftwaresolutions.com/product_details/java_to_csharp_converter.html  
 
 ## Ref  
-* jill
+* jill  
 http://code.google.com/p/jillcode/  
 https://github.com/Ravenbrook/jill  
 
