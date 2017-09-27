@@ -13,7 +13,8 @@ namespace metamorphose
             Application.SetCompatibleTextRenderingDefault(false);
             Form form1 = new Form();
             form1.Text = "hello";
-            new Test001();
+            //new Test001();
+            new Runner(new string[]{"fib.lua"}, "runner");
             //Application.Run(form1);
         }
     }

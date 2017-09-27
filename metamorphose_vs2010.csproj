@@ -61,6 +61,7 @@
     <Compile Include="metamorphose\java\SystemUtil.cs" />
     <Compile Include="metamorphose\java\TimeZone.cs" />
     <Compile Include="metamorphose\launcher\Launcher.cs" />
+    <Compile Include="metamorphose\launcher\Runner.cs" />
     <Compile Include="metamorphose\lua\BaseLib.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -154,6 +155,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fib.lua">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
