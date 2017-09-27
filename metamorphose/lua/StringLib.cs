@@ -1744,7 +1744,7 @@ namespace metamorphose.lua
 		  // (this will remove the decimal point when m >=
 		  // (10**(precision-1)).
 		  StringBuilder a = new StringBuilder(s);
-		  a.Remove(fsd + required, int.MaxValue);
+		  a.Remove(fsd + required, a.Length - (fsd + required)); //a.Remove(fsd + required, int.MaxValue); //FIXME:changed
 		  if (s.IndexOf('.') < a.Length)
 		  {
 			// Trim trailing zeroes

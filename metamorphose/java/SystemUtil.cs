@@ -43,7 +43,7 @@ namespace metamorphose.java
 		
 		public static long currentTimeMillis()
 		{
-			return 0;
+			return System.Environment.TickCount;
 		}
 
         public static String getenv(String name)

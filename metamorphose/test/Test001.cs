@@ -30,7 +30,7 @@ namespace metamorphose.test
 					StringLib.open(L);
 					TableLib.open(L);
 				}
-				int status = L.doString(test002);
+				int status = L.doString(test001);
 				if (status != 0)
 				{
 					object errObj = L.value(1);

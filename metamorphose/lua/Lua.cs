@@ -2331,7 +2331,7 @@ protectBreak:
 		  }
 		  uv.close();
 		}
-		openupval.Capacity = i + 1;
+		if (i+1 >= openupval.Capacity) {openupval.Capacity = i + 1;} else {openupval.RemoveRange(i+1, openupval.Count - (i+1));} //openupval.Capacity = i + 1; //FIXME:
 		return;
 	  }
 
@@ -4349,7 +4349,7 @@ protectBreak:
 	  /// Lua's is False predicate. </summary>
 	  private bool isFalse(object o)
 	  {
-		return o == NIL || (bool)o == false;
+	  	return o == NIL || (o is bool && (bool)o == false); //FIXME:changed
 	  }
 
 	  /// @deprecated DO NOT CALL. 

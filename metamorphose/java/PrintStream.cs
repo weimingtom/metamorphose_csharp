@@ -11,19 +11,19 @@ namespace metamorphose.java
         //TODO:
 	    public void print(String str)
 	    {
-            Console.WriteLine(str);
+            Console.Write(str); //FIXME:
 	    }
 		
 	    //TODO:
 	    public void println()
 	    {
-		    Console.WriteLine("\n");
+		    Console.Write("\n"); //FIXME:
 	    }
 
         //TODO
         public void print(char str)
         {
-            Console.WriteLine(str.ToString());
+            Console.Write(str.ToString()); //FIXME:
         }
     }
     	
