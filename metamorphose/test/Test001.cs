@@ -19,7 +19,7 @@ namespace metamorphose.test
 			const bool isLoadLib = true;
 			try
 			{
-                System.Diagnostics.Debug.WriteLine("Start test...");
+                Console.WriteLine("Start test...");
 				Lua L = new Lua();
 				if (isLoadLib)
 				{
@@ -49,12 +49,12 @@ namespace metamorphose.test
 					L.push(result);
 					L.call(1, 1);
 					string resultStr = L.toString(L.value(-1));
-                    System.Diagnostics.Debug.WriteLine("Result >>> " + resultStr);
+                    Console.WriteLine("Result >>> " + resultStr);
 				}
 			}
 			catch (Exception e)
 			{
-                System.Diagnostics.Debug.WriteLine(e);
+                Console.WriteLine(e);
 			}
         }
     }

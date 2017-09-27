@@ -48,7 +48,7 @@ namespace metamorphose.java
 		
 		private void throwError(String str)
 		{
-			Debug.WriteLine(str);
+			Console.WriteLine(str);
 			throw new Exception(str);
 		}
     }

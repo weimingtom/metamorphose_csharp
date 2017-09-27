@@ -43,10 +43,9 @@ namespace metamorphose
 						//@see http://www.ttlsa.com/lua/lua-install-and-lua-variable-ttlsa/
 						int narg = args.Length;
 						LuaTable tbl = L.createTable(narg, narg);
-						L.rawSetI(tbl, 0, filename);
 						for (int i = 0; i < narg; i++) 
 						{
-							L.rawSetI(tbl, i + 1, args[i]);
+							L.rawSetI(tbl, i, args[i]);
 						}
 						L.setGlobal("arg", tbl);
 					}

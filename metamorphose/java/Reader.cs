@@ -72,7 +72,7 @@ namespace metamorphose.java
 		//新增
 		private void throwError(String str)
 		{
-			Debug.WriteLine(str);
+			Console.WriteLine(str);
 			throw new Exception(str);
 		}
     }

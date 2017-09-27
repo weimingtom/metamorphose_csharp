@@ -3843,7 +3843,7 @@ protectBreak:
 		  catch (Exception e)
 		  {
 			  Console.WriteLine(e.ToString());
-			  Console.Write(e.StackTrace); //FIXME: added
+			  //Console.Write(e.StackTrace); //FIXME: added
 			@yield(0);
 			throw e;
 		  }

@@ -59,20 +59,20 @@ namespace metamorphose.java
                     return this._date.Year;
 
                 case DAY_OF_WEEK:
-                    Debug.WriteLine("DAY_OF_WEEK not implement");
+                    Console.WriteLine("DAY_OF_WEEK not implement");
                     return 0;
 
                 case DAY_OF_MONTH:
                     return this._date.Day;
             }
-            Debug.WriteLine("Calendar._get(): field not implement");
+            Console.WriteLine("Calendar._get(): field not implement");
             return 0;
         }
 
         public void _set(int field, int value)
         {
             //FIXME:
-            Debug.WriteLine("Calendar._set(): field not implement");
+            Console.WriteLine("Calendar._set(): field not implement");
         }
 
         public static Calendar getInstance(TimeZone t = null)

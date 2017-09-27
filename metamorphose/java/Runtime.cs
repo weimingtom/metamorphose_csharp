@@ -27,7 +27,7 @@ namespace metamorphose.java
 		
 		public int freeMemory()
 		{
-			Debug.WriteLine("Runtime.freeMemory() not implement");
+			Console.WriteLine("Runtime.freeMemory() not implement");
 			return 0;
 		}	
     }
